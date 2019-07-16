@@ -1,0 +1,24 @@
+//GUI 설치 (GNOME Desktop)
+$ yum group list //group list로 설치할 수 있는 group을 확인한다
+$ yum groupinstall “Server with GUI” “GNOME Desktop” “Graphical Administration Tools” //Server with GUI, GNOME Desktop, Graphical Administration Tools가 필요
+$ ln -sf /lib/systemd/system/runlevel5.target /etc/systemd/system/default.target //GUI로 system을 시작하기 위한 runlevel 설정
+$ reboot
+
+////////////////////////////////////////
+$ sudo yum update //yum update
+$ su - //root권한으로 로그인
+$ yum install net-tools //ifconfig 설치
+
+//웹서버 설치
+$ yum install httpd //아파치 설치
+$ firewall-cmd --permanent --add-service=http //방화벽을 열어준다
+$ firewall-cmd --permanent --add-service=https
+$ firewall-cmd --reload //방화벽 재시작
+
+$systemctl enable httpd //리부팅시 자동 재시작
+$systemctl start httpd //아파치 실행
+
+//ssh 사용하기
+$ yum install openssh-server //openssh-server를 리눅스에서 열어준다
+$ systemctl enable sshd
+$ service sshd restart
